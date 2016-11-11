@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.wjc.p2p.MainActivity">
+
+    <FrameLayout
+        android:id="@+id/fl_activity"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginBottom="5dp"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/btn_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/btn_home_bg_selector"
+            android:gravity="center"
+            android:text="主页"
+            android:textSize="15sp"/>
+
+        <RadioButton
+            android:id="@+id/btn_invest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/btn_invest_bg_selector"
+            android:gravity="center"
+            android:text="投资"
+            android:textSize="15sp" />
+
+        <RadioButton
+            android:id="@+id/btn_me"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/btn_me_bg_selector"
+            android:gravity="center"
+            android:text="我的资产"
+            android:textSize="15sp" />
+
+        <RadioButton
+            android:id="@+id/btn_more"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawablePadding="3dp"
+            android:drawableTop="@drawable/btn_more_bg_selector"
+            android:gravity="center"
+            android:text="更多"
+            android:textSize="15sp" />
+    </RadioGroup>
+</LinearLayout>
