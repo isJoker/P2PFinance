@@ -100,9 +100,18 @@
 
             </LinearLayout>
 
-            <Button
+            <com.wjc.p2p.ui.RoundProgress
+                android:id="@+id/rp_home_progress"
                 android:layout_width="120dp"
-                android:layout_height="120dp" />
+                android:layout_height="120dp"
+                android:layout_marginTop="20dp"
+                jokerwan:roundColor="@android:color/darker_gray"
+                jokerwan:roundProgressColor="@android:color/holo_red_dark"
+                jokerwan:textColor="@android:color/holo_blue_dark"
+                jokerwan:textSize="20sp"
+                jokerwan:roundWidth="10dp"
+                jokerwan:max="100"
+                jokerwan:progress="70"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

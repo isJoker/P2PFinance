@@ -2,6 +2,7 @@ package com.wjc.p2p.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import com.wjc.p2p.bean.Image;
 import com.wjc.p2p.bean.Index;
 import com.wjc.p2p.bean.Product;
 import com.wjc.p2p.common.AppNetConfig;
+import com.wjc.p2p.ui.RoundProgress;
 import com.wjc.p2p.uitls.LogUtil;
 import com.wjc.p2p.uitls.UIUtils;
 import com.youth.banner.Banner;
@@ -35,8 +37,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-import static com.wjc.p2p.R.id.tv_home_yearrate;
-
 ;
 
 /**
@@ -46,7 +46,6 @@ import static com.wjc.p2p.R.id.tv_home_yearrate;
  */
 
 public class HomeFragment extends Fragment {
-
     @Bind(R.id.iv_top_back)
     ImageView ivTopBack;
     @Bind(R.id.tv_top_title)
@@ -57,10 +56,13 @@ public class HomeFragment extends Fragment {
     Banner banner;
     @Bind(R.id.tv_home_product)
     TextView tvHomeProduct;
-    @Bind(tv_home_yearrate)
+    @Bind(R.id.rp_home_progress)
+    RoundProgress rpHomeProgress;
+    @Bind(R.id.tv_home_yearrate)
     TextView tvHomeYearrate;
     @Bind(R.id.btn_home_join)
     Button btnHomeJoin;
+
 
 //
 //    @Bind(R.id.iv_top_back)
@@ -77,7 +79,8 @@ public class HomeFragment extends Fragment {
 //    CirclePageIndicator circlePageIndicator;
 
     private Index index;
-//    private MyAdapter adapter;
+    //    private MyAdapter adapter;
+    private int currentProgress;
 
     @Nullable
     @Override
@@ -131,7 +134,7 @@ public class HomeFragment extends Fragment {
                 banner.setImageLoader(new GlideImageLoader());
                 //设置图片uri集合
                 List<String> imageUris = new ArrayList<String>();
-                for(int i = 0; i < images.size(); i++) {
+                for (int i = 0; i < images.size(); i++) {
                     imageUris.add(images.get(i).IMAURL);
                 }
 
@@ -139,7 +142,7 @@ public class HomeFragment extends Fragment {
                 //设置banner动画效果
                 banner.setBannerAnimation(Transformer.CubeOut);
                 //设置标题集合（当banner样式有显示title时）
-                String[] titles = {"硅谷金融金秋加息2%","乐享活180天计划","超级新手计划升级版","FASHION安心钱包计划"};
+                String[] titles = {"硅谷金融金秋加息2%", "乐享活180天计划", "超级新手计划升级版", "FASHION安心钱包计划"};
                 banner.setBannerTitles(Arrays.asList(titles));
                 //设置自动轮播，默认为true
                 banner.isAutoPlay(true);
@@ -152,6 +155,23 @@ public class HomeFragment extends Fragment {
 
 
                 tvHomeYearrate.setText(index.product.yearRate + "%");
+                //初始化当前的进度
+                currentProgress = Integer.parseInt(index.product.progress);
+                LogUtil.e("currentProgress==" + currentProgress);
+
+//                rpHomeProgress.postInvalidate();
+                //让当前的圆形进度条的进度动态的加载显示
+                new Thread() {
+                    public void run() {
+                        rpHomeProgress.setMax(100);//设置最大进度
+                        rpHomeProgress.setProgress(0);//设置为进度为0
+                        for(int i = 0; i < currentProgress; i++) {
+                            rpHomeProgress.setProgress(rpHomeProgress.getProgress() + 1);
+                            SystemClock.sleep(30);
+                            rpHomeProgress.postInvalidate();//强制重绘
+                        }
+                    }
+                }.start();
 
             }
 
@@ -168,7 +188,7 @@ public class HomeFragment extends Fragment {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
             //联网加载图片
-            Picasso.with(context).load((String)path).into(imageView);
+            Picasso.with(context).load((String) path).into(imageView);
         }
     }
 
