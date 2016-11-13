@@ -37,12 +37,11 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-;
 
 /**
  * Created by ${万嘉诚} on 2016/11/11.
  * WeChat：wjc398556712
- * Function：
+ * Function：首页
  */
 
 public class HomeFragment extends Fragment {
@@ -206,6 +205,7 @@ public class HomeFragment extends Fragment {
         ButterKnife.unbind(this);
     }
 
+    //用Banner实现广告轮播图效果代替ViewPager
 //    class MyAdapter extends PagerAdapter{
 //
 //        @Override

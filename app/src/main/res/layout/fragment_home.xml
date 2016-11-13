@@ -7,7 +7,7 @@
 
     <include layout="@layout/titlebar"></include>
 
-    <ScrollView
+    <com.wjc.p2p.ui.MyScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -160,6 +160,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </com.wjc.p2p.ui.MyScrollView>
 
 </LinearLayout>

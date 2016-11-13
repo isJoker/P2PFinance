@@ -8,7 +8,7 @@ package com.wjc.p2p.common;
 
 public class AppNetConfig {
 
-    public static final String HOST = "192.168.191.1";//提供主机ip地址
+    public static final String HOST = "192.168.1.103";//提供主机ip地址
 
     //提供web应用的地址
     public static final String BASE_URL = "http://" + HOST + ":8080/P2PInvest/";
