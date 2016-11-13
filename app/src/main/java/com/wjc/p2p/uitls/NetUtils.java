@@ -1,4 +1,4 @@
-package com.wjc.p2p.ui;
+package com.wjc.p2p.uitls;
 
 /**
  * Created by ${万嘉诚} on 2016/11/11.

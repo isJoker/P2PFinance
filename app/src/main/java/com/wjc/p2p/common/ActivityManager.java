@@ -11,14 +11,14 @@ import java.util.Stack;
  * 涉及到activity的添加、删除指定、删除当前、删除所有、返回栈大小的方法
  */
 
-public class AppManager {
+public class ActivityManager {
 
     //在整个应用程序中，只需要维护当前类的一个实例即可（单例）
-    private AppManager(){}
+    private ActivityManager(){}
 
-    private static AppManager appManager = new AppManager();
+    private static ActivityManager appManager = new ActivityManager();
 
-    public static AppManager getInstance(){
+    public static ActivityManager getInstance(){
         return appManager;
     }
 
@@ -41,13 +41,13 @@ public class AppManager {
      */
     public void remove(Activity activity){
         if(activity != null) {
-            //方式一 ？？？
+            //方式一 :没加 i--时，动态的改变了activityStack的大小，导致有的元素遍历不到，也可能出现空指针
 //            for(int i = 0; i < activityStack.size(); i++) {
 //                //在内存中只加载一次当前类。所以可以使用==进行判断。
 //                if(activity.getClass() == activityStack.get(i).getClass()){
 //                    //从栈空间移除当前的activity
 //                    activityStack.remove(i);
-//                    i--;
+//                    i--;//解决问题
 //                }
 //            }
             //方式二

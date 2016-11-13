@@ -1,4 +1,4 @@
-package com.wjc.p2p.ui;
+package com.wjc.p2p.uitls;
 
 import android.content.Context;
 import android.os.Handler;
@@ -73,7 +73,7 @@ public class UIUtils {
 
     }
 
-    public static int px2Dp(int px){
+    public static int px2dp(int px){
         //获取当前手机的密度
         float density = getContext().getResources().getDisplayMetrics().density;
         return (int)(px / density + 0.5);//通过四舍五入，获取最接近的整数

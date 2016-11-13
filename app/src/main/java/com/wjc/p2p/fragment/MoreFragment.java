@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wjc.p2p.R;
+import com.wjc.p2p.uitls.UIUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,7 +36,7 @@ public class MoreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = View.inflate(getActivity(), R.layout.fragment_more, null);
+        View view = UIUtils.getXmlView(R.layout.fragment_more);
         ButterKnife.bind(this, view);
 
         initTitleBar();

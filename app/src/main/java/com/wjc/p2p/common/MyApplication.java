@@ -25,5 +25,8 @@ public class MyApplication extends Application {
         mHandler = new Handler();
         mThread = Thread.currentThread();
         currentThreadId = android.os.Process.myTid();
+
+        //初始化异常处理器
+//        CrashHandler.getInstance().init(this);
     }
 }

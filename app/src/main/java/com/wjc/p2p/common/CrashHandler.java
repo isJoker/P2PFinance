@@ -3,7 +3,7 @@ package com.wjc.p2p.common;
 import android.content.Context;
 import android.os.Build;
 import android.os.Looper;
-import android.util.Log;
+import android.os.SystemClock;
 import android.widget.Toast;
 
 import com.wjc.p2p.uitls.LogUtil;
@@ -53,13 +53,11 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             defaultUncaughtExceptionHandler.uncaughtException(thread,ex);
         } else {
             LogUtil.e("发生异常了");
-            Log.e("TAG", "1111");
             new Thread(){
                 public void run(){
-                    Log.e("TAG", "2222");
                     //只有在主线程中才可以调用如下的Looper的方法。将要在主线程中执行的代码放在两个方法之间即可。
                     Looper.prepare();
-                    Toast.makeText(mContext, "出现网络连接的异常了！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "亲，出现网络连接的异常了！", Toast.LENGTH_SHORT).show();
                     Looper.loop();
                 }
             }.start();
@@ -68,15 +66,9 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
             collectionException(ex);
 
             //接下来：2s内退出当前的应用
-            try {
-                Log.e("TAG", "3333");
-                Thread.sleep(2000);
-                AppManager.getInstance().removeAll();//移除栈中所有的activity
+                SystemClock.sleep(2000);
+                ActivityManager.getInstance().removeAll();//移除栈中所有的activity
                 android.os.Process.killProcess(android.os.Process.myPid());//杀掉当前的进程
-                System.exit(0);//关闭当前的虚拟机
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
         }
 
@@ -88,6 +80,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
      */
     private void collectionException(Throwable ex) {
         final String exMessage = ex.getMessage();//异常信息
+        //收集手机设备的模拟信息
         final String message = Build.PRODUCT + "--" + Build.DEVICE + "--" + Build.MODEL + "--" + Build.VERSION.SDK_INT;
 
         //模拟将获取的异常相关的数据发送给后台。

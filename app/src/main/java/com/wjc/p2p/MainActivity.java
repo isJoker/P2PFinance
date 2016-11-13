@@ -1,8 +1,6 @@
 package com.wjc.p2p;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,10 +12,12 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.wjc.p2p.common.ActivityManager;
 import com.wjc.p2p.fragment.HomeFragment;
 import com.wjc.p2p.fragment.InvestFragment;
 import com.wjc.p2p.fragment.MeFragment;
 import com.wjc.p2p.fragment.MoreFragment;
+import com.wjc.p2p.uitls.UIUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,7 +25,6 @@ import butterknife.OnClick;
 
 public class MainActivity extends FragmentActivity {
 
-    private static final int MESSAGE_BACK = 0;
     @Bind(R.id.btn_home)
     RadioButton btnHome;
     @Bind(R.id.btn_invest)
@@ -60,13 +59,16 @@ public class MainActivity extends FragmentActivity {
     }
 
     private void initData() {
+        //将当前的Activity添加到栈管理中
+        ActivityManager.getInstance().add(this);
+
+        selectFragment(0);
+        btnHome.setChecked(true);
 
     }
 
     private void initView() {
         ButterKnife.bind(this);
-        selectFragment(0);
-        btnHome.setChecked(true);
     }
 
     @OnClick({R.id.btn_home, R.id.btn_invest, R.id.btn_me, R.id.btn_more})
@@ -87,6 +89,10 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    /**
+     * 切换Fragment
+     * @param i
+     */
     private void selectFragment(int i) {
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
@@ -158,22 +164,19 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    private Handler handler = new Handler(){
-        public void handleMessage(Message msg){
-            switch (msg.what) {
-                case MESSAGE_BACK :
-                    isExit = false;
-                    break;
-            }
-        }
-    };
 
     boolean isExit = false;
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if(keyCode == KeyEvent.KEYCODE_BACK && !isExit) {//如果操作的是“返回键”
             isExit = true;
-            handler.sendEmptyMessageDelayed(MESSAGE_BACK,2000);
+
+            UIUtils.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    isExit = false;
+                }
+            },2000);
             Toast.makeText(MainActivity.this, "再点击一次退出应用", Toast.LENGTH_SHORT).show();
             return true;
         }
