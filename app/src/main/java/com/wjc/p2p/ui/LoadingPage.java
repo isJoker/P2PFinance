@@ -188,6 +188,7 @@ public abstract class LoadingPage extends FrameLayout {
         }
     }
 
+    //加载成功后的回调
     protected abstract void onSuccess(ResultState resultState, View successView);
 
     //提供请求参数

@@ -32,6 +32,7 @@ public abstract class BaseFragment extends Fragment {
                 return getLayoutId();
             }
 
+            //加载成功后的回调
             @Override
             protected void onSuccess(ResultState resultState, View successView) {
                 //要做绑定操作。注意参数1！！
