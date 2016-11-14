@@ -1,13 +1,12 @@
 package com.wjc.p2p.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.loopj.android.http.RequestParams;
 import com.wjc.p2p.R;
 
 import java.util.ArrayList;
@@ -40,19 +39,26 @@ public class InvestFragment extends BaseFragment {
 
 
     @Override
+    protected RequestParams getParams() {
+        return null;
+    }
+
+    @Override
+    protected String getUrl() {
+        return null;
+    }
+
+    @Override
+    protected void initData(String content) {
+        initFragments();
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_invest;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initData();
-    }
-
-    public void initData() {
-        initFragments();
-    }
 
     /**
      * 将三个要显示的fragment添加到集合中
@@ -67,6 +73,7 @@ public class InvestFragment extends BaseFragment {
         fragments.add(productHotFragment);
     }
 
+    @Override
     protected void initTitleBar() {
         ivTopBack.setVisibility(View.GONE);
         ivTopSettings.setVisibility(View.GONE);

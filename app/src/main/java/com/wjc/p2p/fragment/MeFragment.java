@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.loopj.android.http.RequestParams;
 import com.wjc.p2p.R;
 
 import butterknife.Bind;
@@ -26,11 +27,26 @@ public class MeFragment extends BaseFragment {
 
 
     @Override
+    protected RequestParams getParams() {
+        return null;
+    }
+
+    @Override
+    protected String getUrl() {
+        return null;
+    }
+
+    @Override
+    protected void initData(String content) {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.fragment_me;
     }
 
-
+    @Override
     protected void initTitleBar() {
         ivTopBack.setVisibility(View.GONE);
         ivTopSettings.setVisibility(View.GONE);

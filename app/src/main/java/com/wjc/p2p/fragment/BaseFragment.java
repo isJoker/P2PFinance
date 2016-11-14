@@ -7,7 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wjc.p2p.uitls.UIUtils;
+import com.loopj.android.http.RequestParams;
+import com.wjc.p2p.ui.LoadingPage;
 
 import butterknife.ButterKnife;
 
@@ -19,29 +20,61 @@ import butterknife.ButterKnife;
 
 public abstract class BaseFragment extends Fragment {
 
+    private LoadingPage loadingPage;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view = UIUtils.getXmlView(getLayoutId());
-        ButterKnife.bind(this,view);
+        loadingPage = new LoadingPage(container.getContext()) {
+            @Override
+            public int LayoutId() {
+                return getLayoutId();
+            }
 
-        initTitleBar();
-        initData();
-        return view;
+            @Override
+            protected void onSuccess(ResultState resultState, View successView) {
+                //要做绑定操作。注意参数1！！
+                ButterKnife.bind(BaseFragment.this,successView);
+                initTitleBar();
+                initData(resultState.getContent());
+            }
+
+            @Override
+            protected RequestParams params() {
+                return getParams();
+            }
+
+            @Override
+            protected String url() {
+                return getUrl();
+            }
+        };
+        return loadingPage;
     }
 
-    protected abstract int getLayoutId() ;
+    //在onCreateView()方法调用之后，方法可使用showLoadingPage()，所以声明在如下的方法中
 
 
-    protected abstract void initTitleBar();
-
-
-    //用于子类初始化数据
-    public void initData() {
-
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        showLoadingPage();
     }
+
+    private void showLoadingPage() {
+        loadingPage.show();
+    }
+
+    protected abstract RequestParams getParams();//提供请求的参数
+
+    protected abstract String getUrl();//提供请求的url
+
+    protected abstract void initData(String content);//初始化数据
+
+    protected abstract int getLayoutId() ;//获取子类布局的id
+
+    protected abstract void initTitleBar();//初始化标题栏
 
 
     @Override
