@@ -1,16 +1,10 @@
 package com.wjc.p2p.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wjc.p2p.R;
-import com.wjc.p2p.uitls.UIUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -21,7 +15,7 @@ import butterknife.ButterKnife;
  * Function：
  */
 
-public class MeFragment extends Fragment {
+public class MeFragment extends BaseFragment {
 
     @Bind(R.id.iv_top_back)
     ImageView ivTopBack;
@@ -31,17 +25,10 @@ public class MeFragment extends Fragment {
     ImageView ivTopSettings;
 
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = UIUtils.getXmlView(R.layout.fragment_me);
-        ButterKnife.bind(this, view);
-
-        initTitleBar();
-        return view;
+    protected int getLayoutId() {
+        return R.layout.fragment_me;
     }
-
 
 
     protected void initTitleBar() {

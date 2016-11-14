@@ -9,6 +9,8 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ScrollView;
 
+import com.wjc.p2p.uitls.LogUtil;
+
 /**
  * Created by ${万嘉诚} on 2016/11/13.
  * WeChat：wjc398556712
@@ -39,28 +41,28 @@ public class MyScrollView extends ScrollView {
         }
     }
 
-    private Rect normal = new Rect();//用户记录临界状态下的childView的上、左、下、右
-    private boolean isFinishAnimation = true;//判断动画是否结束
+    private int lastY;//记录上一次y坐标的位置
+    private Rect normal = new Rect();//用于记录临界状态时的left,top,right,bottom的坐标
+    private boolean isFinishAnimation = true;//判断是否结束了动画
 
-    //父视图对子视图的拦截操作
-    //如果返回值是true:表示拦截成功。反之，拦截失败
-    private int lastX, lastY, downX, downY;
+    private int lastX;//记录上一次x坐标的位置
+    private int downX,downY;//记录down事件时，x轴和y轴的坐标位置
 
     @Override
-    public boolean onInterceptHoverEvent(MotionEvent event) {
+    public boolean onInterceptTouchEvent(MotionEvent event) {
         boolean isIntercept = false;
+        int eventX = (int) event.getX();
         int eventY = (int) event.getY();
-        int eventX = (int) event.getY();
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 lastX = downX = eventX;
-                lastX = downY = eventY;
+                lastY = downY = eventY;
 
                 break;
             case MotionEvent.ACTION_MOVE:
-                int distanceX = Math.abs(eventX - lastX);
-                int distanceY = Math.abs(eventY - lastY);
+                int distanceX = Math.abs(eventX - downX);
+                int distanceY = Math.abs(eventY - downY);
 
                 if (distanceY > distanceX && distanceY > 10) {
                     isIntercept = true;
@@ -90,7 +92,7 @@ public class MyScrollView extends ScrollView {
             case MotionEvent.ACTION_MOVE:
                 int distanceY = eventY - lastY;//获取移动的距离
 
-                if (isNeedMore()) {
+                if (isNeedMove()) {
                     //记录在临界位置时的childView的坐标
                     if (normal.isEmpty()) {//未被赋值
                         normal.set(childView.getLeft(), childView.getTop(),
@@ -109,7 +111,7 @@ public class MyScrollView extends ScrollView {
                     TranslateAnimation animation = new TranslateAnimation(0, 0, 0, normal.bottom - childView.getBottom());
                     animation.setDuration(300);
 //                    animation.setFillAfter(true);//不能使用这种方式保证childView的最终位置。
-                    childView.setAnimation(animation);
+                    childView.startAnimation((animation));
 
                     //设置动画的监听
                     animation.setAnimationListener(new Animation.AnimationListener() {
@@ -149,18 +151,19 @@ public class MyScrollView extends ScrollView {
     }
 
     //判断在何种情况下才需要按照我们的方式，给自定的ScrollView重新布局
-    private boolean isNeedMore() {
+    private boolean isNeedMove() {
         //获取子视图的测量高度
         int mesuredHeight = childView.getMeasuredHeight();
         int height = this.getHeight();//得到ScrollView在屏幕上占据的空间的高度
         int distanceHeight = mesuredHeight - height;
+        LogUtil.e("distanceHeight=========" + distanceHeight);
 
-        int scrollY = childView.getScrollY();//获取子视图在y轴上的滚动量.特点：上加下减
+        int scrollY = this.getScrollY();//获取子视图在y轴上的滚动量.特点：上加下减
+        LogUtil.e("scrollY========" + scrollY);
 
         if (scrollY <= 0 || scrollY >= distanceHeight) {
             return true;
         }
-
         return false;
     }
 }

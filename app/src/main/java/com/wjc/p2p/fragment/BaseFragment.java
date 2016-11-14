@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.wjc.p2p.R;
+import com.wjc.p2p.uitls.UIUtils;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by ${万嘉诚} on 2016/11/11.
@@ -17,33 +19,34 @@ import com.wjc.p2p.R;
 
 public abstract class BaseFragment extends Fragment {
 
-    private View titlebar;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        titlebar = View.inflate(getActivity(), R.layout.titlebar, null);
+        View view = UIUtils.getXmlView(getLayoutId());
+        ButterKnife.bind(this,view);
+
         initTitleBar();
-        return initView();
+        initData();
+        return view;
     }
+
+    protected abstract int getLayoutId() ;
 
 
     protected abstract void initTitleBar();
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        initData();
-    }
 
     //用于子类初始化数据
     public void initData() {
 
     }
 
-    //用于子类初始化视图
-    public abstract View initView();
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ButterKnife.unbind(this);
+    }
 }

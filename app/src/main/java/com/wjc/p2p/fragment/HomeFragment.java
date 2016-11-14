@@ -1,13 +1,8 @@
 package com.wjc.p2p.fragment;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,7 +19,6 @@ import com.wjc.p2p.bean.Product;
 import com.wjc.p2p.common.AppNetConfig;
 import com.wjc.p2p.ui.RoundProgress;
 import com.wjc.p2p.uitls.LogUtil;
-import com.wjc.p2p.uitls.UIUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -44,7 +38,7 @@ import butterknife.ButterKnife;
  * Function：首页
  */
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends BaseFragment {
     @Bind(R.id.iv_top_back)
     ImageView ivTopBack;
     @Bind(R.id.tv_top_title)
@@ -81,21 +75,12 @@ public class HomeFragment extends Fragment {
     //    private MyAdapter adapter;
     private int currentProgress;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = UIUtils.getXmlView(R.layout.fragment_home);
-        ButterKnife.bind(this, view);
-
-        initTitleBar();
-
-        initData();
-
-        return view;
+    protected int getLayoutId() {
+        return R.layout.fragment_home;
     }
 
-    private void initData() {
+    public void initData() {
         AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
         asyncHttpClient.post(AppNetConfig.INDEX, new AsyncHttpResponseHandler() {
             @Override

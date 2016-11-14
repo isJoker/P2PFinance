@@ -4,14 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wjc.p2p.R;
-import com.wjc.p2p.uitls.UIUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +22,7 @@ import butterknife.ButterKnife;
  * Function：
  */
 
-public class InvestFragment extends Fragment {
+public class InvestFragment extends BaseFragment {
 
 
     @Bind(R.id.iv_top_back)
@@ -41,15 +38,10 @@ public class InvestFragment extends Fragment {
 
     private List<Fragment> fragments = new ArrayList<>();
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        View view = UIUtils.getXmlView(R.layout.fragment_invest);
-        ButterKnife.bind(this, view);
-
-        initTitleBar();
-        return view;
+    protected int getLayoutId() {
+        return R.layout.fragment_invest;
     }
 
     @Override
@@ -58,7 +50,7 @@ public class InvestFragment extends Fragment {
         initData();
     }
 
-    private void initData() {
+    public void initData() {
         initFragments();
     }
 
