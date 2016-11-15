@@ -104,7 +104,11 @@ public abstract class LoadingPage extends FrameLayout {
         emptyView.setVisibility( page_state_current == PAGE_STATE_EMPTY ? VISIBLE : GONE);
         
         if(successView == null) {
-            successView = View.inflate(mContext,LayoutId(),null);
+            //此种方式用的上下文是Application,不能正常显示TabPageIndicator的样式，
+            // 应该用TabPageIndicator所在Activity充当上下文，并在功能清单设置所在Activity的Them
+            // android:theme="@style/StyledIndicators"
+//            successView = UIUtils.getXmlView(LayoutId());
+            successView = View.inflate(mContext,LayoutId(),null);//上下文为MainActivity
             LogUtil.e("successView====" + successView);
             //添加到当前的LoadingPage
             addView(successView,params);
