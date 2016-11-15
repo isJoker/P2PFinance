@@ -158,7 +158,9 @@ public class MyScrollView extends ScrollView {
         int distanceHeight = mesuredHeight - height;
         LogUtil.e("distanceHeight=========" + distanceHeight);
 
-        int scrollY = this.getScrollY();//获取子视图在y轴上的滚动量.特点：上加下减
+        //获取子视图在y轴上的滚动量.特点：上加下减,如果ScrollView不需要滑动就已经完全显示出来了
+        // ,scrollY的值就一直为零
+        int scrollY = this.getScrollY();
         LogUtil.e("scrollY========" + scrollY);
 
         if (scrollY <= 0 || scrollY >= distanceHeight) {

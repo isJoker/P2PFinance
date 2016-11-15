@@ -1,7 +1,8 @@
 package com.wjc.p2p.fragment;
 
 
-import android.support.v4.app.Fragment;
+import com.loopj.android.http.RequestParams;
+import com.wjc.p2p.R;
 
 /**
  * Created by ${万嘉诚} on 2016/11/12.
@@ -9,5 +10,29 @@ import android.support.v4.app.Fragment;
  * Function：
  */
 
-public class ProductRecommondFragment extends Fragment {
+public class ProductRecommondFragment extends BaseFragment {
+    @Override
+    protected RequestParams getParams() {
+        return null;
+    }
+
+    @Override
+    protected String getUrl() {
+        return null;
+    }
+
+    @Override
+    protected void initData(String content) {
+
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.fragment_productrecommend;
+    }
+
+    @Override
+    protected void initTitleBar() {
+
+    }
 }
