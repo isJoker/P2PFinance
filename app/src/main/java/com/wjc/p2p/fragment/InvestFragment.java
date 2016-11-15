@@ -115,7 +115,6 @@ public class InvestFragment extends BaseFragment {
         }
     }
 
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

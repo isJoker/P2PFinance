@@ -3,11 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="全部理财"
-        android:textSize="25sp"
-        android:gravity="center"
-        android:layout_gravity="center"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv_product_list"
+        android:dividerHeight="10dp"
+        android:divider="@null"
+        />
 </LinearLayout>

@@ -11,6 +11,8 @@ import com.wjc.p2p.R;
  */
 
 public class ProductHotFragment extends BaseFragment {
+
+
     @Override
     protected RequestParams getParams() {
         return null;
