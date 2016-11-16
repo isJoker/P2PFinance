@@ -6,8 +6,7 @@
     <com.wjc.p2p.ui.randomlayout.FlowLayout
         android:id="@+id/flow_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#c100ffe1">
+        android:layout_height="match_parent">
 
     </com.wjc.p2p.ui.randomlayout.FlowLayout>
 

@@ -28,7 +28,8 @@
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        ><!--android:theme="@style/StyledIndicators" 显示Indicator方式一 -->
+        android:theme="@style/AppTheme"><!--android:theme="@style/StyledIndicators" 显示Indicator方式一 -->
+
         <activity android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,9 +37,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".MainActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:theme="@style/StyledIndicators"/><!-- 显示Indicator方式二 -->
+
+        <activity android:name=".activity.LoginActivity"/>
+        <activity android:name=".activity.UserInfoActivity"/>
     </application>
 
 </manifest>

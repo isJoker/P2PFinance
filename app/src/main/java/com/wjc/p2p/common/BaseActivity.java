@@ -42,7 +42,7 @@ public abstract class BaseActivity extends FragmentActivity {
 
     //启动新的activity
     public void goToActivity(Class activity, Bundle bundle) {
-        Intent intent = new Intent();
+        Intent intent = new Intent(this,activity);
         if(bundle != null && bundle.size() != 0) {
             intent.putExtra("data",bundle);
         }
