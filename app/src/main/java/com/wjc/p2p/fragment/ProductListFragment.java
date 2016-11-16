@@ -9,7 +9,7 @@ import com.loopj.android.http.RequestParams;
 import com.wjc.p2p.R;
 import com.wjc.p2p.bean.Product;
 import com.wjc.p2p.common.AppNetConfig;
-import com.wjc.p2p.common.ProductListFAdapter2;
+import com.wjc.p2p.adapter.PListFAdapter2;
 
 import java.util.List;
 
@@ -50,13 +50,13 @@ public class ProductListFragment extends BaseFragment {
         }
 
         //方式一：
-//        ProductListFAdapter adapter = new ProductListFAdapter(productList);
+//        PListFAdapter adapter = new PListFAdapter(productList);
 
         //方式二：抽取方式一以后 （可以使用，但是getView()优化有限）
-//        ProductListFAdapter1 adapter = new ProductListFAdapter1(productList);
+//        PListFAdapter1 adapter = new PListFAdapter1(productList);
 
         //方式三（推荐,既对getView()抽取了，同时使用了ViewHolder）
-        ProductListFAdapter2 adapter = new ProductListFAdapter2(productList);
+        PListFAdapter2 adapter = new PListFAdapter2(productList);
 
         lvProductList.setAdapter(adapter);
 

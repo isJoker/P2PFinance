@@ -1,4 +1,4 @@
-package com.wjc.p2p.common;
+package com.wjc.p2p.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +19,10 @@ import butterknife.ButterKnife;
  * Function：
  */
 
-public class ProductListFAdapter1 extends MyBaseAdapter1 {
+public class PListFAdapter1 extends MyBaseAdapter1 {
 
 
-    public ProductListFAdapter1(List list) {
+    public PListFAdapter1(List list) {
         super(list);
     }
 

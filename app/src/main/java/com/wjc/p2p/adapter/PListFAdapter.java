@@ -1,4 +1,4 @@
-package com.wjc.p2p.common;
+package com.wjc.p2p.adapter;
 
 import android.graphics.Color;
 import android.view.Gravity;
@@ -23,11 +23,11 @@ import butterknife.ButterKnife;
  * Function：一般的自定义Adapter
  */
 
-public class ProductListFAdapter extends BaseAdapter {
+public class PListFAdapter extends BaseAdapter {
 
     private List<Product> products;
 
-    public ProductListFAdapter(List<Product> products) {
+    public PListFAdapter(List<Product> products) {
         this.products = products;
     }
 

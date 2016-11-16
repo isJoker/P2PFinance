@@ -1,8 +1,10 @@
-package com.wjc.p2p.common;
+package com.wjc.p2p.adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+
+import com.wjc.p2p.common.BaseHolder;
 
 import java.util.List;
 

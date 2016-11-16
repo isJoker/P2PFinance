@@ -1,4 +1,7 @@
-package com.wjc.p2p.common;
+package com.wjc.p2p.adapter;
+
+import com.wjc.p2p.common.BaseHolder;
+import com.wjc.p2p.common.MyHolder;
 
 import java.util.List;
 
@@ -8,9 +11,9 @@ import java.util.List;
  * Function：
  */
 
-public class ProductListFAdapter2 extends MyBaseAdapter2 {
+public class PListFAdapter2 extends MyBaseAdapter2 {
 
-    public ProductListFAdapter2(List list) {
+    public PListFAdapter2(List list) {
         super(list);
     }
 
