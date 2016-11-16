@@ -1,18 +1,15 @@
 package com.wjc.p2p;
 
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.wjc.p2p.common.ActivityManager;
+import com.wjc.p2p.common.BaseActivity;
 import com.wjc.p2p.fragment.HomeFragment;
 import com.wjc.p2p.fragment.InvestFragment;
 import com.wjc.p2p.fragment.MeFragment;
@@ -20,11 +17,13 @@ import com.wjc.p2p.fragment.MoreFragment;
 import com.wjc.p2p.uitls.UIUtils;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaseActivity {
 
+
+    @Bind(R.id.fl_activity)
+    FrameLayout flActivity;
     @Bind(R.id.btn_home)
     RadioButton btnHome;
     @Bind(R.id.btn_invest)
@@ -35,9 +34,6 @@ public class MainActivity extends FragmentActivity {
     RadioButton btnMore;
     @Bind(R.id.activity_main)
     LinearLayout activityMain;
-    @Bind(R.id.fl_activity)
-    FrameLayout flActivity;
-
     private HomeFragment homeFragment;
     private InvestFragment investFragment;
     private MeFragment meFragment;
@@ -45,31 +41,25 @@ public class MainActivity extends FragmentActivity {
     private FragmentTransaction transaction;
     private FragmentManager fragmentManager;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-
-        initView();
-
-        initData();
+    protected void initTitle() {
 
     }
 
-    private void initData() {
-        //将当前的Activity添加到栈管理中
-        ActivityManager.getInstance().add(this);
-
+    @Override
+    public void initData() {
+        //默认初始化：显示首页数据
         selectFragment(0);
         btnHome.setChecked(true);
 
     }
 
-    private void initView() {
-        ButterKnife.bind(this);
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_main;
     }
+
 
     @OnClick({R.id.btn_home, R.id.btn_invest, R.id.btn_me, R.id.btn_more})
     public void ChangeTab(View view) {
@@ -91,6 +81,7 @@ public class MainActivity extends FragmentActivity {
 
     /**
      * 切换Fragment
+     *
      * @param i
      */
     private void selectFragment(int i) {
@@ -166,9 +157,10 @@ public class MainActivity extends FragmentActivity {
 
 
     boolean isExit = false;
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK && !isExit) {//如果操作的是“返回键”
+        if (keyCode == KeyEvent.KEYCODE_BACK && !isExit) {//如果操作的是“返回键”
             isExit = true;
 
             UIUtils.getHandler().postDelayed(new Runnable() {
@@ -176,10 +168,11 @@ public class MainActivity extends FragmentActivity {
                 public void run() {
                     isExit = false;
                 }
-            },2000);
+            }, 2000);
             Toast.makeText(MainActivity.this, "再点击一次退出应用", Toast.LENGTH_SHORT).show();
             return true;
         }
         return super.onKeyUp(keyCode, event);
     }
+
 }

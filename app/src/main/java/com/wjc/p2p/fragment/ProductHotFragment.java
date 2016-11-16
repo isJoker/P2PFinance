@@ -85,7 +85,7 @@ public class ProductHotFragment extends BaseFragment {
             });
 
             //设置内边距
-            int padding = UIUtils.dp2Px(10);
+            int padding = UIUtils.dp2Px(5);
             tv.setPadding(padding,padding,padding,padding);
 
             // 2.添加到FlowLayout布局中
