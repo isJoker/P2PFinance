@@ -71,7 +71,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     protected void initData(String content) {
         index = new Index();
-        if(!TextUtils.isEmpty(content)) {
+        if (!TextUtils.isEmpty(content)) {
             //1、使用FastJson解析得到json数据，并封装数据到bean对象中
             JSONObject jsonObject = JSON.parseObject(content);
             //解析得到Product对象
@@ -130,13 +130,16 @@ public class HomeFragment extends BaseFragment {
 
 //                rpHomeProgress.postInvalidate();
             //让当前的圆形进度条的进度动态的加载显示
+            //设置最大进度
+            //设置为进度为0
+            //强制重绘
             new Thread() {
                 public void run() {
                     rpHomeProgress.setMax(100);//设置最大进度
                     rpHomeProgress.setProgress(0);//设置为进度为0
-                    for(int i = 0; i < currentProgress; i++) {
+                    for (int i = 0; i < currentProgress; i++) {
                         rpHomeProgress.setProgress(rpHomeProgress.getProgress() + 1);
-                        SystemClock.sleep(30);
+                        SystemClock.sleep(10);
                         rpHomeProgress.postInvalidate();//强制重绘
                     }
                 }
@@ -166,4 +169,5 @@ public class HomeFragment extends BaseFragment {
         ivTopSettings.setVisibility(View.GONE);
         tvTopTitle.setText("首页");
     }
+
 }

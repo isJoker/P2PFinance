@@ -18,7 +18,9 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 import com.wjc.p2p.R;
 import com.wjc.p2p.activity.LoginActivity;
+import com.wjc.p2p.activity.RechargeActivity;
 import com.wjc.p2p.activity.UserInfoActivity;
+import com.wjc.p2p.activity.WithdrawActivity;
 import com.wjc.p2p.bean.User;
 import com.wjc.p2p.common.BaseActivity;
 import com.wjc.p2p.uitls.BitmapUtils;
@@ -176,5 +178,15 @@ public class MeFragment extends BaseFragment {
             Bitmap bitmap = BitmapFactory.decodeFile(filePath);
             imageView1.setImageBitmap(bitmap);
         }
+    }
+
+    @OnClick(R.id.recharge)
+    public void reCharge(View view){
+        ((BaseActivity)this.getActivity()).goToActivity(RechargeActivity.class, null);
+    }
+
+    @OnClick(R.id.withdraw)
+    public void withdraw(View view){
+        ((BaseActivity)this.getActivity()).goToActivity(WithdrawActivity.class, null);
     }
 }
