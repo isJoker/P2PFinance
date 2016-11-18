@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Environment;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -33,7 +32,7 @@ import butterknife.OnClick;
 /**
  * Created by ${万嘉诚} on 2016/11/11.
  * WeChat：wjc398556712
- * Function：
+ * Function：w我的资产界面
  */
 
 public class MeFragment extends BaseFragment {
@@ -108,14 +107,10 @@ public class MeFragment extends BaseFragment {
         textView11.setText(user.UF_ACC);
 
         //如果在本地存储了用户头像，则优先从本地获取
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-            File externalFilesDir = getActivity().getExternalFilesDir(null);
-            File file = new File(externalFilesDir,"icon.png");
-            if(file.exists()) {
-                Bitmap bitmap = BitmapFactory.decodeFile(file.getAbsolutePath());
-                imageView1.setImageBitmap(bitmap);
-                return;
-            }
+        String filePath = getActivity().getCacheDir() + "/tx.png";
+        File file = new File(filePath);
+        if(file.exists()) {
+           return;
         }
 
         //设置用户头像--联网获取
@@ -167,9 +162,19 @@ public class MeFragment extends BaseFragment {
     @Override
     protected void initTitleBar() {
         ivTopBack.setVisibility(View.GONE);
-        ivTopSettings.setVisibility(View.GONE);
+        ivTopSettings.setVisibility(View.VISIBLE);
         tvTopTitle.setText("我的资产");
 
     }
 
+    @Override
+    public void onResume() {//从本地获取
+        super.onResume();
+        String filePath = getActivity().getCacheDir() + "/tx.png";
+        File file = new File(filePath);
+        if(file.exists()) {
+            Bitmap bitmap = BitmapFactory.decodeFile(filePath);
+            imageView1.setImageBitmap(bitmap);
+        }
+    }
 }

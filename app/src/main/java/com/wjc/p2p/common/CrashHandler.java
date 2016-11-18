@@ -67,7 +67,7 @@ public class CrashHandler implements Thread.UncaughtExceptionHandler {
 
             //接下来：2s内退出当前的应用
                 SystemClock.sleep(2000);
-                ActivityManager.getInstance().removeAll();//移除栈中所有的activity
+                MyActivityManager.getInstance().removeAll();//移除栈中所有的activity
                 android.os.Process.killProcess(android.os.Process.myPid());//杀掉当前的进程
 
         }

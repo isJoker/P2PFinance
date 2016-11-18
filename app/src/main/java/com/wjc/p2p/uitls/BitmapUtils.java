@@ -36,7 +36,7 @@ public class BitmapUtils {
         return bitmap;
     }
     //图片的压缩
-    public static Bitmap zoom(Bitmap source,float w ,float h){//参数2，3：必须不能声明int
+    public static Bitmap zoom(Bitmap source,float w ,float h){//参数2，3：必须不能声明int,不然压缩成0
         Matrix matrix = new Matrix();
         matrix.postScale(w / source.getWidth(),h / source.getHeight());
 

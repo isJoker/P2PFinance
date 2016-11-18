@@ -16,7 +16,7 @@ import com.loopj.android.http.RequestParams;
 import com.wjc.p2p.MainActivity;
 import com.wjc.p2p.R;
 import com.wjc.p2p.bean.User;
-import com.wjc.p2p.common.ActivityManager;
+import com.wjc.p2p.common.MyActivityManager;
 import com.wjc.p2p.common.AppNetConfig;
 import com.wjc.p2p.common.BaseActivity;
 import com.wjc.p2p.uitls.MD5Utils;
@@ -90,7 +90,7 @@ public class LoginActivity extends BaseActivity {
                         //保存用户登录的信息
                         saveLogin(user);
                         //返回操作
-                        ActivityManager.getInstance().removeAll();
+                        MyActivityManager.getInstance().removeAll();
                         goToActivity(MainActivity.class,null);//显示首页
 
                     } else {//4.如果返回successs = false,表示用户名或密码不匹配
@@ -109,7 +109,7 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.iv_top_back)
     public void back(View view) {
-        ActivityManager.getInstance().removeAll();//移除所有栈空间的activity
+        MyActivityManager.getInstance().removeAll();//移除所有栈空间的activity
         goToActivity(MainActivity.class, null);
     }
 

@@ -11,14 +11,14 @@ import java.util.Stack;
  * 涉及到activity的添加、删除指定、删除当前、删除所有、返回栈大小的方法
  */
 
-public class ActivityManager {
+public class MyActivityManager {
 
     //在整个应用程序中，只需要维护当前类的一个实例即可（单例）
-    private ActivityManager(){}
+    private MyActivityManager(){}
 
-    private static ActivityManager appManager = new ActivityManager();
+    private static MyActivityManager appManager = new MyActivityManager();
 
-    public static ActivityManager getInstance(){
+    public static MyActivityManager getInstance(){
         return appManager;
     }
 

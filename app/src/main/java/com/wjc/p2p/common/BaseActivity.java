@@ -27,7 +27,7 @@ public abstract class BaseActivity extends FragmentActivity {
         ButterKnife.bind(this);
 
         //将当前的activity添加到自己的栈空间中
-        ActivityManager.getInstance().add(this);
+        MyActivityManager.getInstance().add(this);
 
         //初始化的操作
         initTitle();
@@ -76,6 +76,6 @@ public abstract class BaseActivity extends FragmentActivity {
 
     //关闭当前activity的显示
     public void closeCurrentActivity(){
-        ActivityManager.getInstance().removeCurrent();
+        MyActivityManager.getInstance().removeCurrent();
     }
 }
