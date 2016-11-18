@@ -1,1 +1,1 @@
-include ':app', ':ViewPagerIndicator_library'
+include ':app', ':ViewPagerIndicator_library', ':MPChartLib', ':MPChartExample'

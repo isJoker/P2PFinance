@@ -17,8 +17,12 @@ import com.loopj.android.http.RequestParams;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 import com.wjc.p2p.R;
+import com.wjc.p2p.activity.BarChartActivity;
+import com.wjc.p2p.activity.LineChartActivity;
 import com.wjc.p2p.activity.LoginActivity;
+import com.wjc.p2p.activity.PieChartActivity;
 import com.wjc.p2p.activity.RechargeActivity;
+import com.wjc.p2p.activity.ToggleButtonActivity;
 import com.wjc.p2p.activity.UserInfoActivity;
 import com.wjc.p2p.activity.WithdrawActivity;
 import com.wjc.p2p.bean.User;
@@ -58,14 +62,15 @@ public class MeFragment extends BaseFragment {
     ImageView recharge;
     @Bind(R.id.withdraw)
     ImageView withdraw;
-    @Bind(R.id.ll_touzi)
-    TextView llTouzi;
-    @Bind(R.id.ll_touzi_zhiguan)
-    TextView llTouziZhiguan;
-    @Bind(R.id.ll_zichang)
-    TextView llZichang;
-    @Bind(R.id.ll_zhanquan)
-    TextView llZhanquan;
+    @Bind(R.id.ll_invest_manager)
+    TextView llInvestManager;
+    @Bind(R.id.ll_invest_manager_ocular)
+    TextView llInvestManagerOcular;
+    @Bind(R.id.ll_assets_manager)
+    TextView llAssetsManager;
+    @Bind(R.id.ll_account_security)
+    TextView llAccountSecurity;
+
 
     @Override
     protected RequestParams getParams() {
@@ -84,15 +89,15 @@ public class MeFragment extends BaseFragment {
     }
 
     @OnClick(R.id.iv_top_settings)
-    public void showSettings(View view){
-        ((BaseActivity)this.getActivity()).goToActivity(UserInfoActivity.class, null);
+    public void showSettings(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(UserInfoActivity.class, null);
     }
 
     private void isLogin() {
         //1.读取本地保存登录信息位置的文件，判断是否已经登录。
         SharedPreferences sp = getActivity().getSharedPreferences("user_info", Context.MODE_PRIVATE);
         String uf_acc = sp.getString("UF_ACC", "");
-        if(TextUtils.isEmpty(uf_acc)) {
+        if (TextUtils.isEmpty(uf_acc)) {
             //2.1如果没有找到文件中的登录信息：提供用户：必须登录
             login();
         } else {
@@ -111,8 +116,8 @@ public class MeFragment extends BaseFragment {
         //如果在本地存储了用户头像，则优先从本地获取
         String filePath = getActivity().getCacheDir() + "/tx.png";
         File file = new File(filePath);
-        if(file.exists()) {
-           return;
+        if (file.exists()) {
+            return;
         }
 
         //设置用户头像--联网获取
@@ -174,19 +179,41 @@ public class MeFragment extends BaseFragment {
         super.onResume();
         String filePath = getActivity().getCacheDir() + "/tx.png";
         File file = new File(filePath);
-        if(file.exists()) {
+        if (file.exists()) {
             Bitmap bitmap = BitmapFactory.decodeFile(filePath);
             imageView1.setImageBitmap(bitmap);
         }
     }
 
     @OnClick(R.id.recharge)
-    public void reCharge(View view){
-        ((BaseActivity)this.getActivity()).goToActivity(RechargeActivity.class, null);
+    public void reCharge(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(RechargeActivity.class, null);
     }
 
     @OnClick(R.id.withdraw)
-    public void withdraw(View view){
-        ((BaseActivity)this.getActivity()).goToActivity(WithdrawActivity.class, null);
+    public void withdraw(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(WithdrawActivity.class, null);
     }
+
+    @OnClick(R.id.ll_invest_manager)
+    public void showLineChart(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(LineChartActivity.class, null);
+    }
+
+    @OnClick(R.id.ll_invest_manager_ocular)
+    public void showBarChart(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(BarChartActivity.class, null);
+    }
+
+    @OnClick(R.id.ll_assets_manager)
+    public void showPieChart(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(PieChartActivity.class, null);
+    }
+
+    @OnClick(R.id.ll_account_security)
+    public void showToggleButton(View view) {
+        ((BaseActivity) this.getActivity()).goToActivity(ToggleButtonActivity.class, null);
+    }
+
+
 }
