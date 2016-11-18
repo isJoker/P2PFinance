@@ -46,6 +46,20 @@
         <activity android:name=".activity.UserInfoActivity"/>
         <activity android:name=".activity.WithdrawActivity"/>
         <activity android:name=".activity.RechargeActivity"/>
+
+        <!-- alipay sdk start -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind" />
+        <!-- alipay sdk end -->
+
     </application>
 
 </manifest>

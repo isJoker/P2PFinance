@@ -31,5 +31,9 @@ dependencies {
     compile files('libs/android-async-http-master.jar')
     compile project(':ViewPagerIndicator_library')
     compile files('libs/fastjson-1.2.4.jar')
-    compile 'com.youth.banner:banner:1.4.2'  //最新版本
+    compile 'com.youth.banner:banner:1.4.2'
+    //最新版本
+    compile files('libs/alipaysdk.jar')
+    compile files('libs/alipaysecsdk.jar')
+    compile files('libs/alipayutdid.jar')
 }
