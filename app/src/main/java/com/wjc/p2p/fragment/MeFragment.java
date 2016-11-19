@@ -3,6 +3,7 @@ package com.wjc.p2p.fragment;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,14 +18,15 @@ import com.loopj.android.http.RequestParams;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 import com.wjc.p2p.R;
+import com.wjc.p2p.activity.AccountSaveActivity;
 import com.wjc.p2p.activity.BarChartActivity;
 import com.wjc.p2p.activity.LineChartActivity;
 import com.wjc.p2p.activity.LoginActivity;
 import com.wjc.p2p.activity.PieChartActivity;
 import com.wjc.p2p.activity.RechargeActivity;
-import com.wjc.p2p.activity.ToggleButtonActivity;
 import com.wjc.p2p.activity.UserInfoActivity;
 import com.wjc.p2p.activity.WithdrawActivity;
+import com.wjc.p2p.activity.gesturelock.GestureVerifyActivity;
 import com.wjc.p2p.bean.User;
 import com.wjc.p2p.common.BaseActivity;
 import com.wjc.p2p.uitls.BitmapUtils;
@@ -141,6 +143,11 @@ public class MeFragment extends BaseFragment {
         }).into(imageView1);
 
         //判断本地用户是否开启了手势密码，如果开启，需要进入
+        boolean isSecretOpen = getActivity().getSharedPreferences("secret_protect",Context.MODE_PRIVATE).getBoolean("isSecretOpen", false);
+        if(isSecretOpen) {
+            Intent intent = new Intent(getActivity(), GestureVerifyActivity.class);
+            startActivity(intent);
+        }
 
     }
 
@@ -212,7 +219,7 @@ public class MeFragment extends BaseFragment {
 
     @OnClick(R.id.ll_account_security)
     public void showToggleButton(View view) {
-        ((BaseActivity) this.getActivity()).goToActivity(ToggleButtonActivity.class, null);
+        ((BaseActivity) this.getActivity()).goToActivity(AccountSaveActivity.class, null);
     }
 
 

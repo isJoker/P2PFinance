@@ -1,1 +1,1 @@
-include ':app', ':ViewPagerIndicator_library', ':MPChartLib', ':MPChartExample'
+include ':app', ':ViewPagerIndicator_library', ':MPChartLib', ':MPChartExample', ':GestureLock'

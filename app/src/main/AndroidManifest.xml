@@ -49,7 +49,9 @@
         <activity android:name=".activity.LineChartActivity" />
         <activity android:name=".activity.BarChartActivity" />
         <activity android:name=".activity.PieChartActivity" />
-        <activity android:name=".activity.ToggleButtonActivity"/>
+        <activity android:name=".activity.AccountSaveActivity"/>
+        <activity android:name=".activity.gesturelock.GestureEditActivity"/>
+        <activity android:name=".activity.gesturelock.GestureVerifyActivity"/>
 
         <!-- alipay sdk start -->
         <activity
