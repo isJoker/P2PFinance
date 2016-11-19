@@ -8,7 +8,6 @@ import com.loopj.android.http.RequestParams;
 import com.wjc.p2p.R;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by ${万嘉诚} on 2016/11/11.
@@ -24,6 +23,8 @@ public class MoreFragment extends BaseFragment {
     TextView tvTopTitle;
     @Bind(R.id.iv_top_settings)
     ImageView ivTopSettings;
+    @Bind(R.id.tv_message)
+    TextView tvMessage;
 
     @Override
     protected RequestParams getParams() {
@@ -37,6 +38,10 @@ public class MoreFragment extends BaseFragment {
 
     @Override
     protected void initData(String content) {
+        //实现跑马灯效果的方式一：
+//        tvMessage.setFocusable(true);
+//        tvMessage.setFocusableInTouchMode(true);
+//        tvMessage.requestFocus();
 
     }
 
@@ -52,9 +57,4 @@ public class MoreFragment extends BaseFragment {
         tvTopTitle.setText("更多");
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 }

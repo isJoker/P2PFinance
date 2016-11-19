@@ -6,12 +6,17 @@
 
     <include layout="@layout/titlebar"></include>
 
-    <TextView
+    <com.wjc.p2p.ui.MyTextView
+        android:id="@+id/tv_message"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="更多"
+        android:layout_height="match_parent"
+        android:text="有些人，相处了一辈子也觉得没有什么。有的人，见了一面，就觉得是一辈子！"
         android:textSize="40sp"
         android:textColor="@color/title_text"
-        />
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:lines="1"
+        android:gravity="center"/>
+    <!-- android:lines="1" 不能实现跑马灯效果 -->
 
 </LinearLayout>
