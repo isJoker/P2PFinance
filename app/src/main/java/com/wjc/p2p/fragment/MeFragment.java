@@ -115,6 +115,13 @@ public class MeFragment extends BaseFragment {
         //设置用户名的显示
         textView11.setText(user.UF_ACC);
 
+        //判断本地用户是否开启了手势密码，如果开启，需要进入
+        boolean isSecretOpen = getActivity().getSharedPreferences("secret_protect",Context.MODE_PRIVATE).getBoolean("isSecretOpen", false);
+        if(isSecretOpen) {
+            Intent intent = new Intent(getActivity(), GestureVerifyActivity.class);
+            startActivity(intent);
+        }
+
         //如果在本地存储了用户头像，则优先从本地获取
         String filePath = getActivity().getCacheDir() + "/tx.png";
         File file = new File(filePath);
@@ -141,13 +148,6 @@ public class MeFragment extends BaseFragment {
                 return "";//此方法不能返回null.否则报异常
             }
         }).into(imageView1);
-
-        //判断本地用户是否开启了手势密码，如果开启，需要进入
-        boolean isSecretOpen = getActivity().getSharedPreferences("secret_protect",Context.MODE_PRIVATE).getBoolean("isSecretOpen", false);
-        if(isSecretOpen) {
-            Intent intent = new Intent(getActivity(), GestureVerifyActivity.class);
-            startActivity(intent);
-        }
 
     }
 

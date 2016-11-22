@@ -38,4 +38,5 @@ dependencies {
     compile files('libs/alipayutdid.jar')
     compile project(path: ':MPChartLib')
     compile project(':GestureLock')
+    compile 'org.greenrobot:eventbus:3.0.0'
 }
